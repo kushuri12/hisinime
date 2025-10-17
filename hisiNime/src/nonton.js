@@ -103,15 +103,20 @@ function renderServers(servers) {
   const sEl = document.getElementById("servers");
   const player = document.getElementById("player");
   sEl.innerHTML = "";
+
+  const savedServerId = localStorage.getItem("preferredServer");
+
+  let targetServerBtn = null;
+
   servers.forEach(s => {
     const btn = createButton(s.title, async () => {
-      console.log("🟡 Server ID terpilih:", s.serverId);
+      // simpan server id ke localStorage
+      localStorage.setItem("preferredServer", s.serverId);
 
-      // kalau serverId sudah URL, pakai langsung
+      console.log("🟡 Server ID terpilih:", s.serverId);
       if (s.serverId.startsWith("http")) {
         player.src = s.serverId;
       } else {
-        // ambil URL asli dari server ID via API
         try {
           const res = await fetch(`${API}samehadaku/server/${s.serverId}`);
           const json = await res.json();
@@ -127,9 +132,21 @@ function renderServers(servers) {
         }
       }
     });
+
     sEl.appendChild(btn);
+
+    // kalau serverId sama dengan yang tersimpan, simpan button-nya
+    if (savedServerId && s.serverId === savedServerId) {
+      targetServerBtn = btn;
+    }
   });
-  sEl.querySelector("button")?.click(); // auto pilih server pertama
+
+  // klik server yang tersimpan, kalau tidak ada klik pertama
+  if (targetServerBtn) {
+    targetServerBtn.click();
+  } else {
+    sEl.querySelector("button")?.click();
+  }
 }
 
 // fungsi bantu bikin button
@@ -144,4 +161,5 @@ function createButton(text, onClick) {
   });
   return btn;
 }
+
 
