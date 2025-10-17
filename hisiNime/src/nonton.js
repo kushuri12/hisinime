@@ -104,16 +104,18 @@ function renderServers(servers) {
   const player = document.getElementById("player");
   sEl.innerHTML = "";
 
-  const savedServerId = localStorage.getItem("preferredServer");
+  // Ambil index server tersimpan
+  const savedServerIndex = parseInt(localStorage.getItem("preferredServerIndex"));
 
   let targetServerBtn = null;
 
-  servers.forEach(s => {
+  servers.forEach((s, i) => {
     const btn = createButton(s.title, async () => {
-      // simpan server id ke localStorage
-      localStorage.setItem("preferredServer", s.serverId);
+      // Simpan urutan server yang dipilih
+      localStorage.setItem("preferredServerIndex", i);
 
-      console.log("🟡 Server ID terpilih:", s.serverId);
+      console.log("🟡 Server terpilih index:", i, "ID:", s.serverId);
+
       if (s.serverId.startsWith("http")) {
         player.src = s.serverId;
       } else {
@@ -135,18 +137,19 @@ function renderServers(servers) {
 
     sEl.appendChild(btn);
 
-    // kalau serverId sama dengan yang tersimpan, simpan button-nya
-    if (savedServerId && s.serverId === savedServerId) {
+    // kalau index server cocok dengan yang tersimpan, pilih itu
+    if (!isNaN(savedServerIndex) && i === savedServerIndex) {
       targetServerBtn = btn;
     }
   });
 
-  // klik server yang tersimpan, kalau tidak ada klik pertama
+  // klik server sesuai index tersimpan, kalau tidak ada klik pertama
   if (targetServerBtn) {
     targetServerBtn.click();
   } else {
     sEl.querySelector("button")?.click();
   }
+}
 }
 
 // fungsi bantu bikin button
@@ -161,5 +164,6 @@ function createButton(text, onClick) {
   });
   return btn;
 }
+
 
 
