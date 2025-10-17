@@ -103,22 +103,15 @@ function renderServers(servers) {
   const sEl = document.getElementById("servers");
   const player = document.getElementById("player");
   sEl.innerHTML = "";
-
-  // Ambil index server tersimpan
-  const savedServerIndex = parseInt(localStorage.getItem("preferredServerIndex"));
-
-  let targetServerBtn = null;
-
-  servers.forEach((s, i) => {
+  servers.forEach(s => {
     const btn = createButton(s.title, async () => {
-      // Simpan urutan server yang dipilih
-      localStorage.setItem("preferredServerIndex", i);
+      console.log("🟡 Server ID terpilih:", s.serverId);
 
-      console.log("🟡 Server terpilih index:", i, "ID:", s.serverId);
-
+      // kalau serverId sudah URL, pakai langsung
       if (s.serverId.startsWith("http")) {
         player.src = s.serverId;
       } else {
+        // ambil URL asli dari server ID via API
         try {
           const res = await fetch(`${API}samehadaku/server/${s.serverId}`);
           const json = await res.json();
@@ -134,22 +127,9 @@ function renderServers(servers) {
         }
       }
     });
-
     sEl.appendChild(btn);
-
-    // kalau index server cocok dengan yang tersimpan, pilih itu
-    if (!isNaN(savedServerIndex) && i === savedServerIndex) {
-      targetServerBtn = btn;
-    }
   });
-
-  // klik server sesuai index tersimpan, kalau tidak ada klik pertama
-  if (targetServerBtn) {
-    targetServerBtn.click();
-  } else {
-    sEl.querySelector("button")?.click();
-  }
-}
+  sEl.querySelector("button")?.click(); // auto pilih server pertama
 }
 
 // fungsi bantu bikin button
@@ -164,6 +144,7 @@ function createButton(text, onClick) {
   });
   return btn;
 }
+
 
 
 
