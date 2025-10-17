@@ -65,12 +65,38 @@ async function loadStreaming(id) {
 function renderQualities(qualities) {
   const qEl = document.getElementById("qualities");
   qEl.innerHTML = "";
+
+  let targetButton = null;
+  const savedResolution = localStorage.getItem("preferredResolution");
+
   qualities.forEach(q => {
     if (!q.serverList?.length) return;
-    const btn = createButton(q.title, () => renderServers(q.serverList));
+
+    const btn = createButton(q.title, () => {
+      // simpan resolusi yang dipilih user
+      localStorage.setItem("preferredResolution", q.title);
+      renderServers(q.serverList);
+    });
+
     qEl.appendChild(btn);
+
+    // kalau resolusi sama dengan yang tersimpan
+    if (savedResolution && q.title === savedResolution) {
+      targetButton = btn;
+    }
+
+    // fallback ke 720p jika belum ada tersimpan
+    if (!savedResolution && q.title.includes("720")) {
+      targetButton = btn;
+    }
   });
-  qEl.querySelector("button")?.click(); // auto pilih kualitas pertama
+
+  // klik target button (resolusi tersimpan atau 720p), kalau tidak ada klik pertama
+  if (targetButton) {
+    targetButton.click();
+  } else {
+    qEl.querySelector("button")?.click();
+  }
 }
 
 function renderServers(servers) {
@@ -118,3 +144,4 @@ function createButton(text, onClick) {
   });
   return btn;
 }
+
