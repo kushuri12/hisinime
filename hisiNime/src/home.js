@@ -62,9 +62,6 @@ function displayAnime(animeList, targetId) {
           class="w-full h-auto rounded mb-3 object-cover" />
         <div class="flex flex-col items-start">
           <h3 class="font-bold text-sm mb-1 line-clamp-2">${anime.title}</h3>
-          <p class="text-xs text-gray-600">Tipe: ${anime.type}</p>
-          <p class="text-xs text-gray-600">Skor: ${anime.score}</p>
-          <p class="text-xs text-gray-600 mb-2">Status: ${anime.status}</p>
         </div>
       </a>
     `;
@@ -129,3 +126,4 @@ window.addEventListener("DOMContentLoaded", () => {
   enableHorizontalScroll("anime-card");
   enableHorizontalScroll("anime-on");
 });
+
