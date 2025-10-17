@@ -45,7 +45,7 @@ async function loadStreaming(id) {
       (eps) => `
       <div class="flex mb-2 items-center gap-3 hover:bg-gray-200 rounded p-1 transition">
         <img class="w-auto h-[50px] rounded" src="${eps.poster}" alt="no-img">
-        <a href="nonton.html?id=${eps.episodeId}" class="flex-1 text-purple-800 text-sm md:text-lg bg-white px-3 py-1 rounded hover:bg-purple-100 transition">
+        <a href="nonton.html?id=${eps.episodeId}" class="flex-1 text-purple-800 text-sm md:text-lg h-auto bg-white px-3 py-1 rounded hover:bg-purple-100 transition">
           ${eps.title}
         </a>
       </div>
@@ -144,6 +144,7 @@ function createButton(text, onClick) {
   });
   return btn;
 }
+
 
 
 
