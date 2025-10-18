@@ -38,14 +38,14 @@ async function loadStreaming(id) {
 
     rekomen.innerHTML = `
     <!-- Rekomendasi Episode -->
-<div class="mt-8 bg-gray-100 rounded p-3 overflow-y-auto h-[200px]">
+<div class="mt-8 bg-gray-100 rounded p-3 overflow-y-auto h-[500px]">
   <span class="font-semibold text-purple-500 block mb-3">Rekomendasi Episode:</span>
   ${data.recommendedEpisodeList
     .map(
       (eps) => `
       <div class="flex mb-2 items-center gap-3 hover:bg-gray-200 rounded p-1 transition">
         <img class="w-auto h-[50px] rounded" src="${eps.poster}" alt="no-img">
-        <a href="nonton.html?id=${eps.episodeId}" class="flex-1 text-purple-800 text-sm md:text-lg h-[100px] bg-white px-3 py-1 rounded hover:bg-purple-100 transition">
+        <a href="nonton.html?id=${eps.episodeId}" class="flex-1 text-purple-800 text-sm md:text-lg h-[70px] bg-white px-3 py-1 rounded hover:bg-purple-100 transition">
           ${eps.title}
         </a>
       </div>
@@ -144,6 +144,7 @@ function createButton(text, onClick) {
   });
   return btn;
 }
+
 
 
 
