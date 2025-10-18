@@ -25,7 +25,7 @@ async function getDetailAnime(id) {
 
     detailContainer.innerHTML = `
       <div class="w-screen items-center md:items-start rounded-lg flex flex-col md:flex-row">
-      <div class="w-full">
+      <div class="w-full h-[30vh]">
       <img
     src="${anime.poster}"
     alt="${anime.japanese}"
@@ -76,6 +76,7 @@ async function getDetailAnime(id) {
     detailContainer.innerText = "Gagal mengambil detail anime.";
   }
 }
+
 
 
 
