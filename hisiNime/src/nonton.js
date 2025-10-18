@@ -1,4 +1,4 @@
-.const API = "https://www.sankavollerei.com/anime/";
+const API = "https://www.sankavollerei.com/anime/";
 const container = document.getElementById("container");
 const rekomen = document.getElementById("rekomen");
 
@@ -144,6 +144,7 @@ function createButton(text, onClick) {
   });
   return btn;
 }
+
 
 
 
