@@ -18,30 +18,23 @@ async function loadStreaming(id) {
     if (!data) return (container.innerText = "Streaming anime tidak tersedia.");
 
     container.innerHTML = `
-  <a class="bg-gray-100 text-center p-2 mr-2 rounded text-purple-500 hover:bg-purple-100 transition" href="./index.html">Kembali</a>
+        <a class="bg-gray-100 text-center p-2 mr-2 rounded text-purple-500 hover:bg-purple-100 transition" href="./index.html">Kembali</a>
+        <h1 class="mt-5 font-bold text-xl text-center mb-4">${data.title}</h1>
+  
+<!-- Navigasi episode -->
+<div class="flex justify-between mt-3 w-full">
+  <a class="bg-gray-100 text-center p-2 mr-2 rounded text-purple-500 hover:bg-purple-100 transition" href="?id=${data.prevEpisode?.episodeId || '#'}"><< Sebelumnya</a>
+  <a class="bg-gray-100 text-center p-2 ml-2 rounded text-purple-500 hover:bg-purple-100 transition" href="?id=${data.nextEpisode?.episodeId || '#'}">Selanjutnya >></a>
+</div>
 
-  <h1 class="mt-5 font-bold text-xl text-center mb-4">${data.title}</h1>
-
-  <!-- Navigasi episode -->
-  <div class="flex justify-between mt-3 w-full">
-    <a class="bg-gray-100 text-center p-2 mr-2 rounded text-purple-500 hover:bg-purple-100 transition" href="?id=${data.prevEpisode?.episodeId || '#'}">⬅ Sebelumnya</a>
-    <a class="bg-gray-100 text-center p-2 ml-2 rounded text-purple-500 hover:bg-purple-100 transition" href="?id=${data.nextEpisode?.episodeId || '#'}">Selanjutnya ➡</a>
-  </div>
-
-  <!-- Player Wrapper + Next Button Overlay -->
-  <div class="relative mt-4">
-    <iframe id="player" class="w-full aspect-video rounded shadow" src="" frameborder="0" allowfullscreen></iframe>
-
-    <button id="nextEpisodeBtn"
-      class="absolute bottom-4 right-4 bg-purple-600 text-white px-4 py-2 rounded shadow hover:bg-purple-700 transition">
-      Next Episode ▶
-    </button>
-  </div>
-
-  <!-- Quality & Server -->
-  <div id="qualities" class="mt-4 flex flex-wrap gap-2"></div>
-  <div id="servers" class="mt-3 flex flex-wrap gap-2"></div>
+<!-- Player -->
+<iframe id="player" class="w-full aspect-video mt-4 rounded shadow" src="" frameborder="0" allowfullscreen></iframe>
+  
+<!-- Quality & Server -->
+<div id="qualities" class="mt-4 flex flex-wrap gap-2"></div>
+<div id="servers" class="mt-3 flex flex-wrap gap-2"></div>
 `;
+  
 
     rekomen.innerHTML = `
     <!-- Rekomendasi Episode -->
@@ -151,6 +144,7 @@ function createButton(text, onClick) {
   });
   return btn;
 }
+
 
 
 
