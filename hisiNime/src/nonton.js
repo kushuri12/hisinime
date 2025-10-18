@@ -38,7 +38,7 @@ async function loadStreaming(id) {
 
     rekomen.innerHTML = `
     <!-- Rekomendasi Episode -->
-<div class="mt-8 bg-gray-100 rounded p-3 overflow-y-auto h-[500px]">
+<div class="mt-8 bg-gray-100 rounded p-3 overflow-y-auto h-[200px]">
   <span class="font-semibold text-purple-500 block mb-3">Rekomendasi Episode:</span>
   ${data.recommendedEpisodeList
     .map(
@@ -144,6 +144,7 @@ function createButton(text, onClick) {
   });
   return btn;
 }
+
 
 
 
