@@ -33,7 +33,7 @@ async function loadStreaming(id) {
     <iframe id="player" class="w-full aspect-video rounded shadow" src="" frameborder="0" allowfullscreen></iframe>
 
     <button id="nextEpisodeBtn"
-      class="hidden absolute bottom-4 right-4 bg-purple-600 text-white px-4 py-2 rounded shadow hover:bg-purple-700 transition">
+      class="absolute bottom-4 right-4 bg-purple-600 text-white px-4 py-2 rounded shadow hover:bg-purple-700 transition">
       Next Episode ▶
     </button>
   </div>
@@ -151,6 +151,7 @@ function createButton(text, onClick) {
   });
   return btn;
 }
+
 
 
 
