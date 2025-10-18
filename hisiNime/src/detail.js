@@ -24,7 +24,6 @@ async function getDetailAnime(id) {
     const anime = data.data;
 
     detailContainer.innerHTML = `
-      <div class="w-[100%] items-center md:items-start rounded-lg flex flex-col md:flex-row">
       <img
     src="${anime.poster}"
     alt="${anime.japanese}"
@@ -67,13 +66,13 @@ async function getDetailAnime(id) {
         .join("")}
     </div>
   </div>
-</div>
     `;
   } catch (error) {
     console.error(error);
     detailContainer.innerText = "Gagal mengambil detail anime.";
   }
 }
+
 
 
 
